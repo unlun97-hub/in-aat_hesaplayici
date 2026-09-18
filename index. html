@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İnşaat Metraj & Maliyet</title>
+    <style>
+        body { font-family: sans-serif; padding: 15px; background: #f0f2f5; }
+        .card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+        input, button { width: 100%; padding: 12px; margin-top: 8px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; }
+        button { background: #1877f2; color: white; font-weight: bold; border: none; }
+        .premium { border: 2px dashed #ff9800; background: #fff8e1; }
+    </style>
+</head>
+<body>
+    <h2>İnşaat Metraj Hesabı</h2>
+
+    <div class="card">
+        <h3>Beton & Demir Miktarı Hesabı (Ücretsiz)</h3>
+        <label>Alan (m²):</label>
+        <input type="number" id="alan" placeholder="Örn: 120">
+        
+        <label>Kat Sayısı:</label>
+        <input type="number" id="kat" placeholder="Örn: 3">
+
+        <button onclick="hesapla()">Hesapla</button>
+        <p id="sonuc"></p>
+    </div>
+
+    <div class="card premium">
+        <h3>Detaylı Maliyet Raporu & PDF Çıktısı</h3>
+        <p>Gelişmiş malzeme maliyeti (Çimento, İşçilik, Nakliye) için abonelik başlatın.</p>
+        <button onclick="aboneOl()" style="background:#ff9800;">Aylık 199 TL - 7 Gün Ücretsiz Dene</button>
+    </div>
+
+    <script>
+        function hesapla() {
+            let a = document.getElementById("alan").value;
+            let k = document.getElementById("kat").value;
+            if(a && k) {
+                let toplamAlan = a * k;
+                let beton = (toplamAlan * 0.35).toFixed(1);
+                let demir = (toplamAlan * 35).toFixed(0);
+                document.getElementById("sonuc").innerHTML = 
+                    "<b>Toplam İnşaat Alanı:</b> " + toplamAlan + " m²<br>" +
+                    "<b>Tahmini Beton:</b> " + beton + " m³<br>" +
+                    "<b>Tahmini Demir:</b> " + demir + " kg";
+            } else {
+                alert("Lütfen alan ve kat sayısını girin.");
+            }
+        }
+
+        function aboneOl() {
+            alert("Abonelik ödeme sistemi yükleniyor...");
+        }
+    </script>
+</body>
+</html>
